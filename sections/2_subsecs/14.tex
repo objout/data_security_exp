@@ -1,0 +1,181 @@
+\subsection{实验目的-分析 oracle 日志}
+分析 oracle 日志.
+%
+\subsection{实验原理}
+%
+\subsection{实验环境}
+\begin{itemize}
+  \item Windows server 2003:192.168.1.2 wireshark、orabrute、sqlplus
+  \item Windows server 2008 R2：192.168.1.3oracle 11g
+\end{itemize}
+%
+\subsection{实验步骤}
+【实验原理】
+1) TNS 协议
+TNS 协议是 ORACLE 服务端和客户端通讯的协议。TNS 协议传输可以使用 TCP/IP 协议、使用 SSL
+的 TCP/IP 协议、命名管道和 IPC 协议传输，其中 TCP/IP 协议传输是使用明文传送。 ORACLE
+网络通讯协议 TNS 有许多版本，并且大部分向下兼容。
+TNS 协议有一个通用的头，通用头包含一个请求数据类型。不同的服务请求和数据，传输使用不
+同的请求数据类型。Type 标识数据包的类型 ，说明如下：
+类型号 类型说明
+1 连接（CONNECT）
+2 接受（ACCEPT）
+3 确认（ACK）
+4 拒绝（REFUTE）
+5 重定向（REDIRECT）
+6 数据（DATA）
+7 NULL
+8
+9 中止（ABORT）
+10
+11 重新发送（RESEND）
+12 标记（MARKER）
+13 ATTENTION
+14 控制（CONTROL）
+2) oracle 加密原理
+当 Oracle 发起连接后，Oracle 客户端向 oracle 数据库发送自己版本号、包含的加密算法等信
+息。最终服务端确定使用什么加密算法，然后进行 O3logon 验证。O3logon 验证是一种查询-响
+应协议，它利用 DES 加密技术保护这个会话的密钥（sesskey），保证 sesskey 不会在网络中传
+输，所以即使有人监听网络也不会暴露核心密钥。其中 O3logon 验证的核心是 sesskey。
+Oracle 11g 在 10g 的基础上进行了一定的改变。假设我们已经取得一个含有 Oracle 登录信息的
+网络通讯包。省略掉前面和密码关系不大的信息在数据包中寻找到 4 个相关信息，分别是数据库
+发送给客户端的 S_AUTH_SESSKEY、AUTH_VFR_DATA、客户端发送给服务器的 C_AUTH_SESSKEY 和 A
+UTH_PASSWORD。
+假设取得了 Oracle_hash，11g 基本同于 10g，客户端和数据库分别以 Oracle_hash 为基础生成 S
+_AUTH_SESSKEY 和 C_AUTH_SESSKEY。客户端对传过来的 S_AUTH_SESSKEY 做 AES192 解密处理拿到
+server_sesskey，把 server_sesskey 和自己的 client_sesskey 做 md5 生成 combine，用 combi
+ne 生成 AUTH_PASSWORD。服务器端最后用 combine 对 AUTH_PASSWORD 解密，对比密码，如果密码
+一致则登陆成功。
+11g 最大的变化在生成 Oracle_hash 上采取了和 10g 不同的策略。Oracle 11g 为了提高 Oracle_
+hash 的安全性，引入了 AUTH_VFR_DATA 这个随机值，取消了明文密码。每个会话的 AUTH_VFR_D
+ATA 都不同。从根本上避免 9i、10g 同字符串（用户名+密码组成的字符串）带来的无论哪台机
+器 oracle_hash 一致的巨大安全隐患。
+从 11g 开始，oracle 和密码相关登陆信息全部采用了密文。有效地加大了破解难度。对于 orac
+le 安全性问题，一定注意防止网络监听，设计 SID 的时候尽量避免 ORCL、TEST 等常用名。端口
+号尽量不要选用 1521 和 1523 来增加扫描难度。使用复杂密码，定期更换密码等都会有助于 o
+racle 的安全
+3) Orabrute
+这里我们使用 Orabrute 工具来进行远程破解 oracle，在使用这个工具的时候，需要系统提
+前安装好 sqlplus，该工具的 原理很简单，就是不停的调用 sqlplus 然后进行登录验证，
+帐户选择的是 sys，密码则为 password.txt 中的密 码单词。只要登录成功 ，就会调用 s
+electpassword.sql 脚本抓取出在 SYS.USER$表中的其他用户的哈希值，然后退出程序。这里
+有个值得注意的地方，当第二次运行 Orabrute 的时候，需要删除或移动同目录下的前一次运
+行 Orabrute 时生成的 thepasswordsarehere .txt 文件。
+4) SQLPLUS
+Oracle 的 sqlplus 是与 oracle 数据库进行交互的客户端工具，借助 sqlplus 可以查看、修改数
+据库记录。在 sqlplus 中，可以运行 sqlplus 命令与 sql 语句。
+【实验环境】
+【实验步骤】
+一、破解 oracle 用户 sys 的密码，并使用 wireshark 抓取破解数据包
+1.1 为了更直观地查看日志，在 Windows server 2008 R2 上，单击“开始”“管理工具”“事
+件查看器”，展开“Windows 日志”，右键“应用程序”，选择清除日志。如图 1 所示
+图 1
+1.2 在 Windows server 2003（192.168.1.2）上打开 wireshark，选择要监听的网卡后，单击“S
+tart”按钮，开始进行抓包。如图 2 所示
+图 1
+1.3 事先先删除桌面上 tools\oracle 目录下的 thepasswordsarehere .txt 文件，没有则跳
+过。
+1.4 打开 cmd，输入命令“cd C:\Documents and Settings\Administrator\桌面\tools\oracle”，
+再输入命令“orabrute 192.168.1.3 1521 orcl 10 |more”，这里为了便于查看破解
+信息，加了“|more”，在破解过程中，可安空格键查看之后的内容。如图 3 所示
+图 3
+1.5 除了在 cmd 中可以查看到破解结果，还可以在 thepasswordsare.txt 文件中进行查看，可以
+看到 sys 破解出来的密码为 97396900965239D0，。如图 4、图 5 所示
+图 4
+图 5
+1.6 打开 cain，在 Cracker 下选择 Oracle Hashs，先在空白处单击一下鼠标，再单击“+”添
+加信息，用户名为 sys，hash 值为 97396900965239D0，单击“OK”。如图 6 所示
+图 6
+1.7 右键添加的条目，选择“Dictionary Attack”-->“UPPRECASE Hashs”。如图 7 所示
+图 7
+1.8 在 Dictionary 下方的空白处右键，选择“Add to list”，添加字典文件后，单击“Start”
+按钮，开始破解。如图 8 所示
+图 8
+1.9 破解出 sys 的密码为 Simplexue123（这里显示的时候不区分大小写）。如图 9 所示
+图 9
+二、分析抓取的破解数据包，理解 oracle 数据库的破解过程
+2.1 Wireshark 停止抓包，过滤端口号为 1521 的数据包。如图 10 所示
+图 10
+2.2 下面我们对其中一个过程的数据包进行分析。首先查看第一个数据包，源地址为 192.168.1.
+2，源端口为 1357，目的地址为 192.168.1.3，目的端口为 1521，TCP 序号为 SYN，且置为
+1，表示客户端 192.168.1.2 向服务器 192.168.1.3 发送了一个连接请求报文。如图 11 所
+示
+图 11
+2.3 再查看第二个数据包，192.168.1.3 收到请求后确认联机信息，向 192.168.1.2 发送数据包，
+SYN 置为 1，ACK 也置为 1。如图 12 所示
+图 12
+2.4 查看第三个数据包，主机 192.168.1.2 收到数据包后检查无误，向 192.168.1.3 发送数据包，
+ACK 置为 1，至此三次握手完毕，连接建立。如图 13 所示
+图 13
+2.5 在 TNS（Transparent Network Substrate Protocol）协议中，每个 TNS 完整数据都包含一
+个通用包头，说明接受数据的长度及其相关校验和解析的信息，类型 type 的值为 1 时，即
+Connect(1),表示请求连接。如图 14 所示
+图 14
+其中，(DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=orcl)(CID=(PROGRAM=C:\Documents?and?
+Settings\Administrator\????\tools\oracle\sqlplus.exe)(HOST=ADMIN-FAD0D3E1E)(USER=Ad
+ministrator)))(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.3)(PORT=1521)))描述了客户端登
+录服务端时的连接信息。
+2.6 当 type 的值为 11，即 Resend(11)时，表示重新发送，即服务器要求客户端再发送一次连接
+请求。如图 15 所示
+图 15
+2.7 客户端再次发送连接请求。当 type 的值为 2，即 Accept(2)时，表示接受。如图 16 所示
+图 16
+2.8 当 type 的值为 6，即 Data(6)时，表示数据，即进行着数据的传输。继续往下分析数据包，
+我们找到相关的登录请求信息数据包，我们发现无法看到明文密码，因为 oracle 的登录认
+证过程密码是加密的，无法查看。如图 17 所示
+图 17
+2.9 登录失败信息如下。如图 18 所示
+图 18
+2.10 在抓取的破解数据包中，有这样一个数据包，通过分析其，可以发现这是登录成功时显示
+的信息，说明破解出了 sys 的密码，登录成功了。如图 19 所示
+图 19
+2.11 登录成功后调用 selectpassword.sql 脚本，执行 SQL 语句“select name, password f
+rom sys.user$;”，抓取出在 SYS.USER$表中的其他用户的哈希值 ，并将结果保存在 t
+hepasswordsare.txt 文件中，最后退出程序。如图 20 所示
+图 20
+2.12selectpassword.sql 脚本内容如下。如图 21 所示
+图 21
+2.13 所以，只要在破解过程中，有一个密码可以登录成功，我们可以获得所有的用户名及其密
+码 hash 值，再使用 cain 来破解密码。thepasswordsare.txt 的内容如下。如图 22 所示
+图 22
+三、查看日志
+3.1 切换到 Windows server 2008 R2 上，打开 cmd，使用命令“sqlplus sys/Simplexue123 as
+sysdba”进入 oracl。在 oracl 中，使用命令“show parameter audit;”查看和审计相关
+的主要参数，audit_sys_operations 默认为 false，当设置为 true 时，所有 sys 用户（包
+括以 sysdba,sysoper 身份登录的用户）的操作都会被记录，audit trail 不会写在 aud$表
+中，这个很好理解，如果数据库还未启动 aud$不可用，那么像 conn /as sysdba 这样的连
+接信息，只能记录在其它地方。如果是 windows 平台，audti trail 会记录在 windows 的
+事件管理中，如果是 linux/unix 平台则会记录在 audit_file_dest 参数指定的文件中。所
+以本实验审计 sys 的信息时使用事件查看器进行查看。如图 23 所示
+图 23
+3.2 在 Windows server 2008 R2 上刷新“应用程序”日志。如图 24 所示
+图 24
+3.3 发现有多条新增多条应用程序日志信息，查看某条信息记录。如图 25 所示
+图 25
+3.4 下面简略说明一下这条信息所包含的内容。
+Audit trail: LENGTH : '170' ACTION :[7] 'CONNECT' DATABASE USER:[3] 'SYS' PRIVILE
+GE :[4] 'NONE' CLIENT USER:[13] 'Administrator' CLIENT TERMINAL:[5] 'HOSTA' STATUS:
+[4] '1017' DBID:[10] '1471216449' .
+其中，Audit trail 表示审计跟踪，由该条信息可知为连接数据库信息，连接用户名为 SYS，客
+户端用户为 Administrator，连接终端为 HOSTA（即 Windows server 2003 的主机名），STATUS:
+[4] '1017'表示连接失败。如图 26 所示
+图 26
+3.5 在查看这些消息记录时，发现有一条记录与其他的记录相比，略有不同，STATUS:[1] '0'表
+示数据库连接成功。在短时间内有大量的 oracl 数据库连接审计信息，在大多数连接失败
+的信息中，有连接成功的记录，我们有理由相信数据库遭受到了暴力破解攻击。这时我们
+就需要采取应对的应对措施。例如关闭数据库、更改数据库连接密码、限制登录连接次数
+等等。如图 27 所示
+图 27
+3.6 再次清空“应用程序”日志。在 Windows server 2003（192.168.1.2）上，在 cmd 中输入命
+令“sqlplus sys/Simplexue123@192.168.1.3:1521/orcl as sysdba”，使用破解出来
+的密码进行登录，登录成功。如图 28 所示
+图 28
+3.7 在 Windows server 2008 R2(192.168.1.3)上查看“应用程序”日志，发现其信息与我们之
+前猜测的一样，为登录成功的审计日志信息。如图 29 所示
+图 29
+3.8 Oracle 11g 中为了防止暴力破解数据库中用户的密码，提供了一种常见手段：延长失败尝试
+响应。这种手段的策略是：在连续使用错误密码反复尝试登录时，从第四次错误尝试开始，
+每次增加 1 秒的延迟，最长延迟目前是 10 秒。使用这种手段可以相对比较有效的防治用户
+密码的暴力破解（能够使用到这种手段的前提是 FAILED_LOGIN_ATTEMPTS 参数设置的足够
+大或无限大，否则用户密码超过 10 次的错误尝试之后该用户将被锁定。所以本实验为了演
+示效果较佳，使用的密码文件的密码数较少，便于破解。

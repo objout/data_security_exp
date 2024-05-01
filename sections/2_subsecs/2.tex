@@ -1,0 +1,52 @@
+\subsection{实验目的-了解 iptables 中常见的一些相关名词和术语}
+了解 iptables 中常见的一些相关名词和术语.
+%
+\subsection{实验原理}
+\begin{itemize}
+  \item iptables 是与 Linux 内核集成的 IP 信息包过滤系统。如果 Linux 系统连接
+    到因特网或 LAN、服务器或连接 LAN 和因特网的代理服务器，则该系统有利于在
+    Linux 系统上更好地控制 IP 信息包过滤和防火墙配置。
+  \item 防火墙在做信息包过滤决定时，有一套遵循和组成的规则，这些规则存储在
+    专用的信息包过滤表中，而这些表集成在 Linux 内核中。在信息包过滤表中，规
+    则被分组放在我们所谓的链（chain）中。而 ``netfilter/iptables'' IP 信息包过
+    滤系统是一款功能强大的工具，可用于添加、编辑和移除规则。
+\end{itemize}
+%
+\subsubsection{iptables 防火墙}
+\begin{itemize}
+  \item Netfilter/Iptables（以下简称 iptables）是 Unix/Linux 自带的一款优秀
+    且开放源码的完全基于包过滤的防火墙工具，它的功能十分强大，使用非常灵活，
+    可以对流入和流出服务器的数据包进行很精细的控制。特别是它可以在一台非常
+    低的硬件配置下跑得非常好。
+  \item Netfilter/Iptables 的最大优点是它可以配置有状态的防火墙，这是老一
+    辈 ipfwadm 和 ipchains 等以前的工具都无法提供的一种重要功能。Iptables 主
+    要工作在 OSI 的二、三、四层，即数据链路层、网络层和传输层，如果重新编译
+    内核，也可以支持 7 层控制。
+  \item Iptables 防护墙由两个组件 netfilter 和 iptables 组成。
+  \item netfilter 组件也称为内核空间（kernelspace），是内核的一部分，由一
+    些信息包过滤表组成，这些表包含内核用来控制信息包过滤处理的规则集。
+  \item iptables 组件是一种工具，也称为用户空间（userspace），它使插入、修
+    改和除去信息包过滤表中的规则变得容易。
+\end{itemize}
+%
+\subsubsection{iptables 名词和术语}
+\begin{itemize}
+  \item 容器：在 iptables 中，容器用来描述包含或者属于的关系。
+  \item Netfilter：Netfilter 是表（tables）的容器。
+  \item 表（tables）：表（tables）是链的容器，即所有的链（chains）都属于对
+    应的表（tables）。
+  \item 链（chains）：链（chains）是规则（policy）的容器。
+  \item 规则（policy）：规则（policy）是 iptables 一系列过滤信息的规范和具体方法。
+\end{itemize}
+我们可以用一个通俗易懂的例子表现这几个术语之间的关系。
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}[c]{llll}
+      \hline
+      Netfilter & tables(表) & chains(链) & policy(规则) \\
+      一栋楼 & 楼里的房间 & 房间里的柜子 & 柜子里的衣服摆放规则 \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+%
