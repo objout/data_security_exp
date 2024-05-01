@@ -1,0 +1,8 @@
+*.aux
+*.log
+_minted*
+*.fls
+*.fdb_latexmk
+*.xdv
+*.pyg
+temp
