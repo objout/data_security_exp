@@ -34,11 +34,11 @@
 ftp 10.0.0.2
 \end{minted}
 输入用户名 \texttt{ftp}，密码 \texttt{123456}，登录成功。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_6_1.jpeg}
+  \end{center}
+\end{figure}
 
 打开 Windows server 2003 的 cmd，
 输入
@@ -47,11 +47,11 @@ ftp 10.0.0.2
 \end{minted}
 输入用户名 \texttt{ftp}，
 密码 \texttt{123456}，登录成功。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_6_2.jpeg}
+  \end{center}
+\end{figure}
 %
 \subsubsection{配置 iptables ，禁止内外网访问 ftp 服务}
 在防火墙 CentOS 6.5 的终端输入如下命令，清空防火墙规则。
@@ -61,11 +61,11 @@ iptables -X
 iptables -Z
 iptables -L -n --line-numbers
 \end{minted}
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_6_3.jpeg}
+  \end{center}
+\end{figure}
 
 配置防火墙，禁止内外网访问 ftp 服务。
 因为这里我们使用 CentOS 6.5 充当防火墙，数据会在网卡之间进行转发，
@@ -75,39 +75,39 @@ iptables -L -n --line-numbers
 \begin{minted}[bgcolor=bg,breaklines=true]{sh}
 iptables -t filter -A FORWARD -p tcp --dport 21 -j DROP
 \end{minted}
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_6_4.jpeg}
+  \end{center}
+\end{figure}
 
 在终端输入如下命令，将添加的规则保存到 iptables 配置文件中，重启防火墙，
 查看防火墙规则。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_6_5.jpeg}
+  \end{center}
+\end{figure}
 
 此时在 Windows 7 的 cmd 上，输入
 \begin{minted}[bgcolor=bg,breaklines=true]{sh}
 ftp 10.0.0.2
 \end{minted}
 已经不能连接 ftp 服务了。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_6_6.jpeg}
+  \end{center}
+\end{figure}
 
 同样在 Windows server 2003 的 cmd 上，输入
 \begin{minted}[bgcolor=bg,breaklines=true]{sh}
 ftp 10.0.0.2
 \end{minted}
 也已经不能连接 ftp 服务了。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_6_7.jpeg}
+  \end{center}
+\end{figure}
 %

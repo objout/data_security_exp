@@ -12,13 +12,13 @@
 在防火墙 CentOS 6.5 桌面新建 \texttt{firewall.sh}，
 在终端输入命令
 \begin{minted}[bgcolor=bg,breaklines=true]{sh}
-vi firewall.sh。
+vi firewall.sh
 \end{minted}
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_8_1.jpeg}
+  \end{center}
+\end{figure}
 
 编辑脚本 \texttt{firewall.sh}，文件内容如下。
 \begin{minted}[bgcolor=bg,breaklines=true]{sh}
@@ -45,11 +45,11 @@ $IPT -t filter -A INPUT -p icmp -m icmp --icmp-type any -j ACCEPT
 $IPT -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 $IPT -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 \end{minted}
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_8_2.jpeg}
+  \end{center}
+\end{figure}
 
 此时在终端输入命令
 \begin{minted}[bgcolor=bg,breaklines=true]{sh}
@@ -60,22 +60,22 @@ $IPT -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 chmod +x firewall.sh
 \end{minted}
 为其添加权限。再执行脚本，则可执行成功。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_8_3.jpeg}
+  \end{center}
+\end{figure}
 
 在终端输入命令
 \begin{minted}[bgcolor=bg,breaklines=true]{sh}
 iptables -L -n --line-numbers
 \end{minted}
 查看防火墙规则，可以看到防火墙规则添加成功。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_8_4.jpeg}
+  \end{center}
+\end{figure}
 
 但此时添加的防火墙规则只存在于内存中，
 并没有写入 iptables 配置文件中。
@@ -84,22 +84,22 @@ iptables -L -n --line-numbers
 \begin{minted}[bgcolor=bg,breaklines=true]{sh}
 /etc/init.d/iptables save
 \end{minted}
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_8_5.jpeg}
+  \end{center}
+\end{figure}
 
 在终端输入命令
 \begin{minted}[bgcolor=bg,breaklines=true]{sh}
 cat /etc/sysconfig/iptables
 \end{minted}
 查看 iptables 配置文件。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_8_6.jpeg}
+  \end{center}
+\end{figure}
 
 可以看到此时的防火墙与手动执行 iptables
 命令配置防火墙实验中配置防火墙一样。

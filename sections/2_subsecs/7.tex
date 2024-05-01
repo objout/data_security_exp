@@ -24,11 +24,11 @@ Iptables 防火墙在做信息包过滤决定时，有一套遵循和组成的�
 ftp 10.0.0.2
 \end{minted}
 输入用户名 \texttt{ftp}，密码 \texttt{123456}，登录成功。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_7_1.jpeg}
+  \end{center}
+\end{figure}
 
 打开 Windows server 2003 的 cmd，
 输入
@@ -37,11 +37,11 @@ ftp 10.0.0.2
 \end{minted}
 输入用户名 \texttt{ftp}，
 密码 \texttt{123456}，登录成功。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_7_2.jpeg}
+  \end{center}
+\end{figure}
 %
 \subsubsection{配置 iptables，按网段访问 ftp 服务}
 这里以 Windows server 2003 能够访问 ftp 服务，
@@ -54,11 +54,11 @@ iptables -X
 iptables -Z
 iptables -L -n --line-numbers
 \end{minted}
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_7_3.jpeg}
+  \end{center}
+\end{figure}
 
 配置防火墙，按网段访问 ftp 服务。在终输入如下命令，在转发的数据包
 中，如果源地址为 \texttt{192.168.1.0/24}，
@@ -72,11 +72,11 @@ iptables -t filter -A FORWARD -s 20.0.0.0/24 -p tcp --dport 21 -j ACCEPT
 /etc/init.d/iptables restart
 cat /etc/sysconfig/iptables
 \end{minted}
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_7_4.jpeg}
+  \end{center}
+\end{figure}
 
 此时在 Windows 7 的 cmd 上，
 输入
@@ -84,11 +84,11 @@ cat /etc/sysconfig/iptables
 ftp 10.0.0.2
 \end{minted}
 已经不能连接 ftp 服务了。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_7_5.jpeg}
+  \end{center}
+\end{figure}
 
 但在 Windows server 2003 的 cmd 上，
 输入
@@ -96,9 +96,9 @@ ftp 10.0.0.2
 ftp 10.0.0.2
 \end{minted}
 可以继续连接 ftp 服务。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_7_6.jpeg}
+  \end{center}
+\end{figure}
 %

@@ -27,16 +27,16 @@ MySQL 有以下几种日志：
 -log-error = [filename]
 \end{minted}
 来设置 mysql 错误日志，在 mysql 中是默认开启错误日志的。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_11_1.jpeg}
+  \end{center}
+\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_11_2.jpeg}
+  \end{center}
+\end{figure}
 
 查询日志：记录 mysql 的日常日志，包括查询、修改、更新等的每条 SQL 语句信息。
 使用
@@ -44,11 +44,11 @@ MySQL 有以下几种日志：
 show global variables like '%genera%';
 \end{minted}
 查看 mysql 是否启用了查询日志。可以看到此时的查询日志是关闭的。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_11_3.jpeg}
+  \end{center}
+\end{figure}
 
 mysql 打开 general log 日志后，所有的查询语句都可以在 general log 文件中输出，
 如果打开，文件会非常大，建议调试的时候打开，平时关闭。
@@ -63,24 +63,24 @@ set global general_log = on;
 set global general_log = off;
 \end{minted}
 在 mysql 中打开和关闭。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_11_4.jpeg}
+  \end{center}
+\end{figure}
 
 开启查询日志并新建一个名为 simpleware 的数据库。再关闭查询日志，可以看到在查询日
 志中记录了创建数据库 simpleware 和关闭查询日志的 SQL 语句。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_11_5.jpeg}
+  \end{center}
+\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_11_6.jpeg}
+  \end{center}
+\end{figure}
 
 慢查询日志：慢查询日志中记录的是执行时间较长的 query，
 可以设一个阀值、将运行时间超过该值的所有 SQL 语句都记录到慢查询日志文件中。
@@ -93,11 +93,11 @@ set global general_log = off;
 show variables like '%slow%';
 \end{minted}
 查看慢查询日志功能是否开启，可以看到此时慢查询日志功能并未开启。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_11_7.jpeg}
+  \end{center}
+\end{figure}
 
 可使用命令
 \begin{minted}[bgcolor=bg,breaklines=true]{sh}
@@ -105,11 +105,11 @@ set global slow_query_log = on;
 set global slow_query_log = off;
 \end{minted}
 开启或关闭慢查询日志功能。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_11_8.jpeg}
+  \end{center}
+\end{figure}
 
 二进制日志文件：记录与修改有关的信息，影响数据潜在的内容的信息，
 二进制日志也叫复制日志，默认在数据目录下，
@@ -137,8 +137,8 @@ show variables like '%log_bin%';
 查看mysql 二进制日志文件的配置情况，
 log\_bin 用于设定是否启用二进制日志功能，
 可以看到此时二进制日志功能未开启。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_11_9.jpeg}
+  \end{center}
+\end{figure}

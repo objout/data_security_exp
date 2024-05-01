@@ -38,11 +38,11 @@ Windows server 2008 R2:192.168.1.3 oracle 11g
 sqlplus sys/Simplexue123 as sysdba
 \end{minted}
 登录 oracle 数据库。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_13_1.jpeg}
+  \end{center}
+\end{figure}
 
 在 SQL 中输入命令
 \begin{minted}[bgcolor=bg,breaklines=true]{sql}
@@ -50,21 +50,21 @@ select * from v$diag_info;
 \end{minted}
 查看 ADR 对应的目录位置，可以看到 Diag Trace 对应的目录为文本格式的告警日志文件所在的目录，
 而 Diag Alert 对应的目录为 XML 格式的警告日志(对应为 log.xml)。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_13_2.jpeg}
+  \end{center}
+\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_13_3.jpeg}
+  \end{center}
+\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_13_4.jpeg}
+  \end{center}
+\end{figure}
 
 告警日志包含了下面一些内容的信息。像一些 ORA 错误，对于监控数据库有极其重要的作用。
 \begin{enumerate}
@@ -125,11 +125,11 @@ alter system set SQL_TRACE = TRUE SCOPE = both;
 alter system set SQL_TRACE = FALSE;
 \end{minted}
 来进行关闭。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_13_5.jpeg}
+  \end{center}
+\end{figure}
 
 在 SQL 中输入命令
 \begin{minted}[bgcolor=bg,breaklines=true]{sql}
@@ -137,11 +137,11 @@ show parameter DUMP_DEST;
 \end{minted}
 查看跟踪文件位置，
 会看到有三个跟踪文件目录。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_13_6.jpeg}
+  \end{center}
+\end{figure}
 
 其中，\texttt{background\_dump\_dest} 为后台转储，
 \texttt{core\_dump\_dest} 为内核转储，
@@ -153,20 +153,20 @@ show parameter DUMP_DEST;
 show parameter background_dump_dest;
 \end{minted}
 查看后台转储跟踪日志文件的路径。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_13_7.jpeg}
+  \end{center}
+\end{figure}
 
 可知跟踪日志文件所在的路径,
 可以在该路径下，找到日志文件。
 跟踪文件名形如：\texttt{orcl\_cjq0\_2348.trc}（SID 名+进程名+ 进程 ID）。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_13_8.jpeg}
+  \end{center}
+\end{figure}
 %
 \subsubsection{重做日志}
 重做日志分为在线重做日志和归档重做日志。
@@ -204,36 +204,36 @@ Oracle 提供了 2 个视图用于维护在线重做日志：V\$LOG 和 V\$LOGFI
 SELECT * FROM v$log;
 \end{minted}
 通过 v\$log 视图查询在线日志的总体信息。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_13_9.jpeg}
+  \end{center}
+\end{figure}
 
 为了便于查看，复制到 txt 文件整理后的在线日志的总体信息如下。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_13_10.jpeg}
+  \end{center}
+\end{figure}
 
 在 SQL 中输入命令
 \begin{minted}[bgcolor=bg,breaklines=true]{sql}
 SELECT * FROM v$logfile ORDER BY group#;
 \end{minted}
 通过 v\$logfile 视图查询在线日志文件信息。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_13_11.jpeg}
+  \end{center}
+\end{figure}
 
 为了便于查看，复制到 txt 文件整理后的在线日志文件信息如下。
-%\begin{figure}[H]
-  %\begin{center}
-    %\includegraphics[width=0.50\textwidth]{}
-  %\end{center}
-%\end{figure}
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.40\textwidth]{2_13_12.jpeg}
+  \end{center}
+\end{figure}
 
 此外可以通过 ALTER、DATABASE、ADD、DELETE 等命令增加、
 修改或删除在线日志或日志组.
