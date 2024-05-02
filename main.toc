@@ -1,0 +1,99 @@
+\contentsline {chapter}{\numberline {第一章\hspace {.3em}}PGP 软件应用实验}{7}{chapter.1}%
+\contentsline {section}{\numberline {1.1}实验介绍}{7}{section.1.1}%
+\contentsline {section}{\numberline {1.2}实验内容}{7}{section.1.2}%
+\contentsline {section}{\numberline {1.3}报告内容}{7}{section.1.3}%
+\contentsline {section}{\numberline {1.4}PGP 密钥对的产生与管理}{7}{section.1.4}%
+\contentsline {section}{\numberline {1.5}文件的加密与签名}{9}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Email 的加密与签名}{13}{section.1.6}%
+\contentsline {section}{\numberline {1.7}文件的粉碎}{16}{section.1.7}%
+\contentsline {section}{\numberline {1.8}虚拟磁盘的加密}{16}{section.1.8}%
+\contentsline {section}{\numberline {1.9}磁盘空间的粉碎}{17}{section.1.9}%
+\contentsline {chapter}{\numberline {第二章\hspace {.3em}}安全基础技术实验}{19}{chapter.2}%
+\contentsline {section}{\numberline {2.1}实验要求}{19}{section.2.1}%
+\contentsline {section}{\numberline {2.2}实验内容}{19}{section.2.2}%
+\contentsline {section}{\numberline {2.3}防火墙}{19}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}实验目的-搭建 iptables 实验环境}{19}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}实验原理}{19}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}实验环境}{19}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}实验步骤}{20}{subsection.2.3.4}%
+\contentsline {subsubsection}{\numberline {2.3.4.1}配置虚拟机 IP 地址}{20}{subsubsection.2.3.4.1}%
+\contentsline {subsubsection}{\numberline {2.3.4.2}测试 win7、2003 和服务器 centos 的是否连通}{22}{subsubsection.2.3.4.2}%
+\contentsline {subsection}{\numberline {2.3.5}实验目的-了解 iptables 中常见的一些相关名词和术语}{23}{subsection.2.3.5}%
+\contentsline {subsection}{\numberline {2.3.6}实验原理}{24}{subsection.2.3.6}%
+\contentsline {subsubsection}{\numberline {2.3.6.1}iptables 防火墙}{24}{subsubsection.2.3.6.1}%
+\contentsline {subsubsection}{\numberline {2.3.6.2}iptables 名词和术语}{24}{subsubsection.2.3.6.2}%
+\contentsline {subsection}{\numberline {2.3.7}实验目的-了解 iptables 中的表和链}{25}{subsection.2.3.7}%
+\contentsline {subsection}{\numberline {2.3.8}实验原理}{25}{subsection.2.3.8}%
+\contentsline {subsection}{\numberline {2.3.9}实验原理}{25}{subsection.2.3.9}%
+\contentsline {subsubsection}{\numberline {2.3.9.1}iptables 的表（tables）和链（chains）}{25}{subsubsection.2.3.9.1}%
+\contentsline {subsubsection}{\numberline {2.3.9.2}iptables 表和链工作的流程图}{26}{subsubsection.2.3.9.2}%
+\contentsline {subsection}{\numberline {2.3.10}实验目的-了解 iptables 常用的基本命令}{26}{subsection.2.3.10}%
+\contentsline {subsection}{\numberline {2.3.11}实验原理}{26}{subsection.2.3.11}%
+\contentsline {subsection}{\numberline {2.3.12}实验环境}{26}{subsection.2.3.12}%
+\contentsline {subsection}{\numberline {2.3.13}实验步骤}{27}{subsection.2.3.13}%
+\contentsline {subsubsection}{\numberline {2.3.13.1}查看 iptables 使用方法}{27}{subsubsection.2.3.13.1}%
+\contentsline {subsubsection}{\numberline {2.3.13.2}iptables 基本命令}{27}{subsubsection.2.3.13.2}%
+\contentsline {subsection}{\numberline {2.3.14}实验目的-熟悉 iptables 的表链操作}{31}{subsection.2.3.14}%
+\contentsline {subsection}{\numberline {2.3.15}实验原理}{31}{subsection.2.3.15}%
+\contentsline {subsection}{\numberline {2.3.16}实验环境}{31}{subsection.2.3.16}%
+\contentsline {subsection}{\numberline {2.3.17}实验步骤}{32}{subsection.2.3.17}%
+\contentsline {subsubsection}{\numberline {2.3.17.1}Iptables 链操作}{32}{subsubsection.2.3.17.1}%
+\contentsline {subsection}{\numberline {2.3.18}实验目的-配置 iptables 禁止访问 ftp 服务}{37}{subsection.2.3.18}%
+\contentsline {subsection}{\numberline {2.3.19}实验原理}{37}{subsection.2.3.19}%
+\contentsline {subsection}{\numberline {2.3.20}实验环境}{37}{subsection.2.3.20}%
+\contentsline {subsection}{\numberline {2.3.21}实验步骤}{37}{subsection.2.3.21}%
+\contentsline {subsubsection}{\numberline {2.3.21.1}在当前环境下内外网均可连接 ftp 服务}{37}{subsubsection.2.3.21.1}%
+\contentsline {subsubsection}{\numberline {2.3.21.2}配置 iptables ，禁止内外网访问 ftp 服务}{38}{subsubsection.2.3.21.2}%
+\contentsline {subsection}{\numberline {2.3.22}实验目的-配置 iptables 按网段访问 ftp 服务}{40}{subsection.2.3.22}%
+\contentsline {subsection}{\numberline {2.3.23}实验原理}{40}{subsection.2.3.23}%
+\contentsline {subsection}{\numberline {2.3.24}实验环境}{40}{subsection.2.3.24}%
+\contentsline {subsection}{\numberline {2.3.25}实验步骤}{40}{subsection.2.3.25}%
+\contentsline {subsubsection}{\numberline {2.3.25.1}在当前环境下内外网均可连接 ftp 服务}{40}{subsubsection.2.3.25.1}%
+\contentsline {subsubsection}{\numberline {2.3.25.2}配置 iptables，按网段访问 ftp 服务}{41}{subsubsection.2.3.25.2}%
+\contentsline {subsection}{\numberline {2.3.26}实验目的-通过编写脚本配置防火墙}{43}{subsection.2.3.26}%
+\contentsline {subsection}{\numberline {2.3.27}实验原理}{43}{subsection.2.3.27}%
+\contentsline {subsection}{\numberline {2.3.28}实验环境}{43}{subsection.2.3.28}%
+\contentsline {subsection}{\numberline {2.3.29}实验步骤}{43}{subsection.2.3.29}%
+\contentsline {subsubsection}{\numberline {2.3.29.1}使用脚本配置防火墙}{43}{subsubsection.2.3.29.1}%
+\contentsline {subsection}{\numberline {2.3.30}实验目的-实现外部 IP 地址映射到服务器}{46}{subsection.2.3.30}%
+\contentsline {subsection}{\numberline {2.3.31}实验原理}{46}{subsection.2.3.31}%
+\contentsline {subsection}{\numberline {2.3.32}实验环境}{46}{subsection.2.3.32}%
+\contentsline {subsection}{\numberline {2.3.33}实验步骤}{47}{subsection.2.3.33}%
+\contentsline {subsubsection}{\numberline {2.3.33.1}将外部 IP 端口地址映射到内部服务器}{47}{subsubsection.2.3.33.1}%
+\contentsline {section}{\numberline {2.4}数据库安全}{49}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}实验目的-MSSQL攻击日志分析}{49}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}实验原理}{50}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}实验环境}{50}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}实验步骤}{50}{subsection.2.4.4}%
+\contentsline {subsubsection}{\numberline {2.4.4.1}破解sa密码，并用wireshark抓取破解数据包}{50}{subsubsection.2.4.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.4.2}分析抓取的数据包，理解 mssql 破解过程}{52}{subsubsection.2.4.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.4.3}查看 mssql 日志}{54}{subsubsection.2.4.4.3}%
+\contentsline {subsection}{\numberline {2.4.5}实验目的-了解 MySQL 日志}{56}{subsection.2.4.5}%
+\contentsline {subsection}{\numberline {2.4.6}实验原理}{56}{subsection.2.4.6}%
+\contentsline {subsection}{\numberline {2.4.7}实验环境}{56}{subsection.2.4.7}%
+\contentsline {subsection}{\numberline {2.4.8}实验步骤}{56}{subsection.2.4.8}%
+\contentsline {subsubsection}{\numberline {2.4.8.1}MySQL 日志介绍}{56}{subsubsection.2.4.8.1}%
+\contentsline {subsection}{\numberline {2.4.9}实验目的-MySQL 日志}{60}{subsection.2.4.9}%
+\contentsline {subsection}{\numberline {2.4.10}实验原理}{60}{subsection.2.4.10}%
+\contentsline {subsection}{\numberline {2.4.11}实验环境}{60}{subsection.2.4.11}%
+\contentsline {subsection}{\numberline {2.4.12}实验步骤}{60}{subsection.2.4.12}%
+\contentsline {subsubsection}{\numberline {2.4.12.1}破解mysql的root密码，并抓取破解数据包}{60}{subsubsection.2.4.12.1}%
+\contentsline {subsubsection}{\numberline {2.4.12.2}分析抓取的数据包，理解 mysql 破解过程}{62}{subsubsection.2.4.12.2}%
+\contentsline {subsubsection}{\numberline {2.4.12.3}查看 mysql 通用日志}{64}{subsubsection.2.4.12.3}%
+\contentsline {subsection}{\numberline {2.4.13}实验目的-了解oracle日志文件}{65}{subsection.2.4.13}%
+\contentsline {subsection}{\numberline {2.4.14}实验原理}{65}{subsection.2.4.14}%
+\contentsline {subsection}{\numberline {2.4.15}实验环境}{65}{subsection.2.4.15}%
+\contentsline {subsection}{\numberline {2.4.16}实验步骤}{65}{subsection.2.4.16}%
+\contentsline {subsubsection}{\numberline {2.4.16.1}告警日志}{65}{subsubsection.2.4.16.1}%
+\contentsline {subsubsection}{\numberline {2.4.16.2}跟踪日志}{68}{subsubsection.2.4.16.2}%
+\contentsline {subsubsection}{\numberline {2.4.16.3}重做日志}{69}{subsubsection.2.4.16.3}%
+\contentsline {subsection}{\numberline {2.4.17}实验目的-分析 oracle 日志}{71}{subsection.2.4.17}%
+\contentsline {subsection}{\numberline {2.4.18}实验原理}{71}{subsection.2.4.18}%
+\contentsline {subsubsection}{\numberline {2.4.18.1}Oracle 加密原理}{71}{subsubsection.2.4.18.1}%
+\contentsline {subsubsection}{\numberline {2.4.18.2}Orabrute}{71}{subsubsection.2.4.18.2}%
+\contentsline {subsubsection}{\numberline {2.4.18.3}SQLPLUS}{72}{subsubsection.2.4.18.3}%
+\contentsline {subsection}{\numberline {2.4.19}实验环境}{72}{subsection.2.4.19}%
+\contentsline {subsection}{\numberline {2.4.20}实验步骤}{72}{subsection.2.4.20}%
+\contentsline {subsubsection}{\numberline {2.4.20.1}破解 oracle 用户 sys 的密码}{72}{subsubsection.2.4.20.1}%
+\contentsline {subsubsection}{\numberline {2.4.20.2}理解 oracle 数据库的破解过程}{75}{subsubsection.2.4.20.2}%
+\contentsline {subsubsection}{\numberline {2.4.20.3}查看日志}{79}{subsubsection.2.4.20.3}%
